@@ -1,0 +1,4202 @@
+openapi: 3.0.2
+info:
+  title: Baby Buddy API
+  version: ''
+paths:
+  /api/children/:
+    get:
+      operationId: listChilds
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: first_name
+        required: false
+        in: query
+        description: first_name
+        schema:
+          type: string
+      - name: last_name
+        required: false
+        in: query
+        description: last_name
+        schema:
+          type: string
+      - name: slug
+        required: false
+        in: query
+        description: slug
+        schema:
+          type: string
+      - name: birth_date
+        required: false
+        in: query
+        description: birth_date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Child'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createChild
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Child'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Child'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Child'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: ''
+      tags:
+      - api
+  /api/children/{slug}/:
+    get:
+      operationId: retrieveChild
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: first_name
+        required: false
+        in: query
+        description: first_name
+        schema:
+          type: string
+      - name: last_name
+        required: false
+        in: query
+        description: last_name
+        schema:
+          type: string
+      - name: slug
+        required: false
+        in: query
+        description: slug
+        schema:
+          type: string
+      - name: birth_date
+        required: false
+        in: query
+        description: birth_date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateChild
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: first_name
+        required: false
+        in: query
+        description: first_name
+        schema:
+          type: string
+      - name: last_name
+        required: false
+        in: query
+        description: last_name
+        schema:
+          type: string
+      - name: slug
+        required: false
+        in: query
+        description: slug
+        schema:
+          type: string
+      - name: birth_date
+        required: false
+        in: query
+        description: birth_date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Child'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Child'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Child'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateChild
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: first_name
+        required: false
+        in: query
+        description: first_name
+        schema:
+          type: string
+      - name: last_name
+        required: false
+        in: query
+        description: last_name
+        schema:
+          type: string
+      - name: slug
+        required: false
+        in: query
+        description: slug
+        schema:
+          type: string
+      - name: birth_date
+        required: false
+        in: query
+        description: birth_date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Child'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Child'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Child'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Child'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyChild
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: first_name
+        required: false
+        in: query
+        description: first_name
+        schema:
+          type: string
+      - name: last_name
+        required: false
+        in: query
+        description: last_name
+        schema:
+          type: string
+      - name: slug
+        required: false
+        in: query
+        description: slug
+        schema:
+          type: string
+      - name: birth_date
+        required: false
+        in: query
+        description: birth_date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/changes/:
+    get:
+      operationId: listDiaperChanges
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: amount
+        required: false
+        in: query
+        description: amount
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: color
+        required: false
+        in: query
+        description: color
+        schema:
+          type: string
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      - name: solid
+        required: false
+        in: query
+        description: solid
+        schema:
+          type: string
+      - name: wet
+        required: false
+        in: query
+        description: wet
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DiaperChange'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createDiaperChange
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiaperChange'
+          description: ''
+      tags:
+      - api
+  /api/changes/{id}/:
+    get:
+      operationId: retrieveDiaperChange
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Diaper Change.
+        schema:
+          type: string
+      - name: amount
+        required: false
+        in: query
+        description: amount
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: color
+        required: false
+        in: query
+        description: color
+        schema:
+          type: string
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      - name: solid
+        required: false
+        in: query
+        description: solid
+        schema:
+          type: string
+      - name: wet
+        required: false
+        in: query
+        description: wet
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiaperChange'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateDiaperChange
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Diaper Change.
+        schema:
+          type: string
+      - name: amount
+        required: false
+        in: query
+        description: amount
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: color
+        required: false
+        in: query
+        description: color
+        schema:
+          type: string
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      - name: solid
+        required: false
+        in: query
+        description: solid
+        schema:
+          type: string
+      - name: wet
+        required: false
+        in: query
+        description: wet
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiaperChange'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateDiaperChange
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Diaper Change.
+        schema:
+          type: string
+      - name: amount
+        required: false
+        in: query
+        description: amount
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: color
+        required: false
+        in: query
+        description: color
+        schema:
+          type: string
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      - name: solid
+        required: false
+        in: query
+        description: solid
+        schema:
+          type: string
+      - name: wet
+        required: false
+        in: query
+        description: wet
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DiaperChange'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiaperChange'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyDiaperChange
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Diaper Change.
+        schema:
+          type: string
+      - name: amount
+        required: false
+        in: query
+        description: amount
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: color
+        required: false
+        in: query
+        description: color
+        schema:
+          type: string
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      - name: solid
+        required: false
+        in: query
+        description: solid
+        schema:
+          type: string
+      - name: wet
+        required: false
+        in: query
+        description: wet
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/feedings/:
+    get:
+      operationId: listFeedings
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: method
+        required: false
+        in: query
+        description: method
+        schema:
+          type: string
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Feeding'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createFeeding
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feeding'
+          description: ''
+      tags:
+      - api
+  /api/feedings/{id}/:
+    get:
+      operationId: retrieveFeeding
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Feeding.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: method
+        required: false
+        in: query
+        description: method
+        schema:
+          type: string
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feeding'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateFeeding
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Feeding.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: method
+        required: false
+        in: query
+        description: method
+        schema:
+          type: string
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feeding'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateFeeding
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Feeding.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: method
+        required: false
+        in: query
+        description: method
+        schema:
+          type: string
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feeding'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feeding'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyFeeding
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Feeding.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: method
+        required: false
+        in: query
+        description: method
+        schema:
+          type: string
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: type
+        schema:
+          type: string
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/notes/:
+    get:
+      operationId: listNotes
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Note'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createNote
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Note'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+      tags:
+      - api
+  /api/notes/{id}/:
+    get:
+      operationId: retrieveNote
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Note.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateNote
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Note.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Note'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateNote
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Note.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Note'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyNote
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Note.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/sleep/:
+    get:
+      operationId: listSleeps
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sleep'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createSleep
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sleep'
+          description: ''
+      tags:
+      - api
+  /api/sleep/{id}/:
+    get:
+      operationId: retrieveSleep
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Sleep.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sleep'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateSleep
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Sleep.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sleep'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateSleep
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Sleep.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Sleep'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sleep'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroySleep
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Sleep.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/temperature/:
+    get:
+      operationId: listTemperatures
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Temperature'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createTemperature
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: ''
+      tags:
+      - api
+  /api/temperature/{id}/:
+    get:
+      operationId: retrieveTemperature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Temperature.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateTemperature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Temperature.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateTemperature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Temperature.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Temperature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperature'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyTemperature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Temperature.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: Date
+        schema:
+          type: string
+      - name: date_max
+        required: false
+        in: query
+        description: Max. Date
+        schema:
+          type: string
+      - name: date_min
+        required: false
+        in: query
+        description: Min. Date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/timers/:
+    get:
+      operationId: listTimers
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: active
+        required: false
+        in: query
+        description: active
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: user
+        required: false
+        in: query
+        description: user
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createTimer
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Timer'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+  /api/timers/{id}/:
+    get:
+      operationId: retrieveTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      - name: active
+        required: false
+        in: query
+        description: active
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: user
+        required: false
+        in: query
+        description: user
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      - name: active
+        required: false
+        in: query
+        description: active
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: user
+        required: false
+        in: query
+        description: user
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Timer'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      - name: active
+        required: false
+        in: query
+        description: active
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: user
+        required: false
+        in: query
+        description: user
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Timer'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      - name: active
+        required: false
+        in: query
+        description: active
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      - name: user
+        required: false
+        in: query
+        description: user
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/tummy-times/:
+    get:
+      operationId: listTummyTimes
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TummyTime'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createTummyTime
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TummyTime'
+          description: ''
+      tags:
+      - api
+  /api/tummy-times/{id}/:
+    get:
+      operationId: retrieveTummyTime
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Tummy Time.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TummyTime'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateTummyTime
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Tummy Time.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TummyTime'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateTummyTime
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Tummy Time.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TummyTime'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TummyTime'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyTummyTime
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Tummy Time.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: end
+        required: false
+        in: query
+        description: End Date
+        schema:
+          type: string
+      - name: end_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: end_min
+        required: false
+        in: query
+        description: Min. End Date
+        schema:
+          type: string
+      - name: start
+        required: false
+        in: query
+        description: Start Date
+        schema:
+          type: string
+      - name: start_max
+        required: false
+        in: query
+        description: Max. End Date
+        schema:
+          type: string
+      - name: start_min
+        required: false
+        in: query
+        description: Min. Start Date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/weight/:
+    get:
+      operationId: listWeights
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Weight'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createWeight
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Weight'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Weight'
+          description: ''
+      tags:
+      - api
+  /api/weight/{id}/:
+    get:
+      operationId: retrieveWeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Weight.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Weight'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateWeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Weight.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Weight'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Weight'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateWeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Weight.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Weight'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Weight'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Weight'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyWeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Weight.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/height/:
+    get:
+      operationId: listHeights
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Height'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createHeight
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Height'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Height'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Height'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Height'
+          description: ''
+      tags:
+      - api
+  /api/height/{id}/:
+    get:
+      operationId: retrieveHeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Height.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Height'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateHeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Height.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Height'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Height'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Height'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Height'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateHeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Height.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Height'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Height'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Height'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Height'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyHeight
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Height.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/head-circumference/:
+    get:
+      operationId: listHeadCircumferences
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HeadCircumference'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createHeadCircumference
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadCircumference'
+          description: ''
+      tags:
+      - api
+  /api/head-circumference/{id}/:
+    get:
+      operationId: retrieveHeadCircumference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Head Circumference.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadCircumference'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateHeadCircumference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Head Circumference.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadCircumference'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateHeadCircumference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Head Circumference.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HeadCircumference'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadCircumference'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyHeadCircumference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Head Circumference.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/bmi/:
+    get:
+      operationId: listBMIs
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BMI'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createBMI
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BMI'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+          description: ''
+      tags:
+      - api
+  /api/bmi/{id}/:
+    get:
+      operationId: retrieveBMI
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this BMI.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateBMI
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this BMI.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BMI'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateBMI
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this BMI.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BMI'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BMI'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyBMI
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this BMI.
+        schema:
+          type: string
+      - name: child
+        required: false
+        in: query
+        description: child
+        schema:
+          type: string
+      - name: date
+        required: false
+        in: query
+        description: date
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/timers/{id}/restart/:
+    patch:
+      operationId: restartTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Timer'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+  /api/timers/{id}/stop/:
+    patch:
+      operationId: stopTimer
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this Timer.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Timer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Timer'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timer'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Child:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 255
+        last_name:
+          type: string
+          maxLength: 255
+        birth_date:
+          type: string
+          format: date
+        slug:
+          type: string
+          readOnly: true
+          pattern: ^[-\w]+\z
+        picture:
+          type: string
+          format: binary
+          nullable: true
+      required:
+      - first_name
+      - birth_date
+    DiaperChange:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        time:
+          type: string
+          format: date-time
+        wet:
+          type: boolean
+        solid:
+          type: boolean
+        color:
+          enum:
+          - black
+          - brown
+          - green
+          - yellow
+          type: string
+        amount:
+          type: number
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - time
+      - wet
+      - solid
+    Feeding:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+          nullable: true
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        duration:
+          type: string
+          readOnly: true
+        type:
+          enum:
+          - breast milk
+          - formula
+          - fortified breast milk
+          - solid food
+          type: string
+        method:
+          enum:
+          - bottle
+          - left breast
+          - right breast
+          - both breasts
+          - parent fed
+          - self fed
+          type: string
+        amount:
+          type: number
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+      required:
+      - type
+      - method
+    Note:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        note:
+          type: string
+        time:
+          type: string
+          format: date-time
+      required:
+      - child
+      - note
+    Sleep:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+          nullable: true
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        duration:
+          type: string
+          readOnly: true
+        nap:
+          type: string
+          readOnly: true
+        notes:
+          type: string
+          nullable: true
+    Temperature:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        temperature:
+          type: number
+        time:
+          type: string
+          format: date-time
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - temperature
+      - time
+    Timer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+          nullable: true
+        name:
+          type: string
+          nullable: true
+          maxLength: 255
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+          readOnly: true
+        duration:
+          type: string
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
+        user:
+          type: integer
+          nullable: true
+    TummyTime:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+          nullable: true
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        duration:
+          type: string
+          readOnly: true
+        milestone:
+          type: string
+          maxLength: 255
+    Weight:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        weight:
+          type: number
+        date:
+          type: string
+          format: date
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - weight
+      - date
+    Height:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        height:
+          type: number
+        date:
+          type: string
+          format: date
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - height
+      - date
+    HeadCircumference:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        head_circumference:
+          type: number
+        date:
+          type: string
+          format: date
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - head_circumference
+      - date
+    BMI:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        child:
+          type: integer
+        bmi:
+          type: number
+        date:
+          type: string
+          format: date
+        notes:
+          type: string
+          nullable: true
+      required:
+      - child
+      - bmi
+      - date
